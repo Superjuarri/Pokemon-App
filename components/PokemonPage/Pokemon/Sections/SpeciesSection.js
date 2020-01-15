@@ -7,12 +7,13 @@ const Wrapper = styled.section`
   margin: 0 auto;
   width: ${({ theme }) => theme.dimensions.contentWidth};
   max-width: ${({ theme }) => theme.dimensions.contentWidthMax};
+  padding: 20px;
 
   display: flex;
   flex-direction: column;
 
   background: white;
-  padding: 25px 0;
+
   border-radius: 6px;
   box-shadow: ${({ theme }) => theme.boxShadows.lg};
 `
