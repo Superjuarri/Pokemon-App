@@ -24,11 +24,17 @@ const Content = styled.section`
   display: grid;
   grid-gap: 10%;
   grid-template-columns: 1fr 1fr;
+
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 const Left = styled.div`
   padding: 10%;
   display: grid;
+  align-items: center;
   justify-items: center;
 `
 
@@ -61,6 +67,10 @@ const ButtonLink = styled.a`
 const Img = styled.img`
   width: 75%;
   height: auto;
+
+  @media screen and (max-width: 600px) {
+    width: 50%;
+  }
 `
 
 const MovesSection = () => {

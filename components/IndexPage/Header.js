@@ -30,6 +30,7 @@ const Content = styled.header`
 `
 
 const Title = styled.h1`
+  text-align: center;
   color: #fff;
 `
 
@@ -43,6 +44,7 @@ const SubTitle = styled.p`
 `
 
 const ButtonLink = styled.a`
+  margin-top: 25px;
   padding: 1em 2em;
   background-color: #fff;
   border-radius: 0.5em;
