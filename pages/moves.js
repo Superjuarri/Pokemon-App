@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import Head from 'next/head'
 import Router from 'next/router'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
@@ -82,35 +83,45 @@ const MovesPage = () => {
   }, [])
 
   return (
-    <Layout>
-      <Wrapper
-        key='IndexWrapper'
-        initial='exit'
-        animate='enter'
-        exit='exit'
-        variants={pageVarients}
-      >
-        <SearchBoxWrapper>
-          <ReactSearchBox
-            placeholder='Search for moves :)'
-            data={allMovesNames}
-            onSelect={record =>
-              Router.push(`/move/[id]`, `/move/${record.value}`)
-            }
-            onChange={value => setSearchValue(value)}
-            fuseConfigs={{
-              threshold: 0.05
-            }}
-            value={searchValue}
-          />
-        </SearchBoxWrapper>
-        <MovesList
-          moves={moves}
-          lastPokemonElementRef={lastPokemonElementRef}
+    <>
+      <Head>
+        <title>Moves</title>
+        <meta
+          name='viewport'
+          content='initial-scale=1.0, width=device-width'
+          key='viewport'
         />
-        <p>{error ? 'error' : loading && 'Loading...'}</p>
-      </Wrapper>
-    </Layout>
+      </Head>
+      <Layout>
+        <Wrapper
+          key='IndexWrapper'
+          initial='exit'
+          animate='enter'
+          exit='exit'
+          variants={pageVarients}
+        >
+          <SearchBoxWrapper>
+            <ReactSearchBox
+              placeholder='Search for moves :)'
+              data={allMovesNames}
+              onSelect={record =>
+                Router.push(`/move/[id]`, `/move/${record.value}`)
+              }
+              onChange={value => setSearchValue(value)}
+              fuseConfigs={{
+                threshold: 0.05
+              }}
+              value={searchValue}
+            />
+          </SearchBoxWrapper>
+          <MovesList
+            moves={moves}
+            lastPokemonElementRef={lastPokemonElementRef}
+          />
+          <p>{error ? 'error' : loading && 'Loading...'}</p>
+        </Wrapper>
+      </Layout>
+    </>
   )
 }
 export default MovesPage

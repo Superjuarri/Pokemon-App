@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import Head from 'next/head'
 import Router from 'next/router'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
@@ -82,35 +83,45 @@ const PokedexPage = () => {
   }, [])
 
   return (
-    <Layout>
-      <Wrapper
-        key='IndexWrapper'
-        initial='exit'
-        animate='enter'
-        exit='exit'
-        variants={pageVarients}
-      >
-        <SearchBoxWrapper>
-          <ReactSearchBox
-            placeholder='Search for pokémon :)'
-            data={allPokemonNames}
-            onSelect={record =>
-              Router.push(`/pokemon/[id]`, `/pokemon/${record.value}`)
-            }
-            onChange={value => setSearchValue(value)}
-            fuseConfigs={{
-              threshold: 0.05
-            }}
-            value={searchValue}
-          />
-        </SearchBoxWrapper>
-        <PokemonGrid
-          allPokemon={pokemon}
-          lastPokemonElementRef={lastPokemonElementRef}
+    <>
+      <Head>
+        <title>Pokdéx</title>
+        <meta
+          name='viewport'
+          content='initial-scale=1.0, width=device-width'
+          key='viewport'
         />
-        <p>{error ? 'error' : loading && 'Loading...'}</p>
-      </Wrapper>
-    </Layout>
+      </Head>
+      <Layout>
+        <Wrapper
+          key='IndexWrapper'
+          initial='exit'
+          animate='enter'
+          exit='exit'
+          variants={pageVarients}
+        >
+          <SearchBoxWrapper>
+            <ReactSearchBox
+              placeholder='Search for pokémon :)'
+              data={allPokemonNames}
+              onSelect={record =>
+                Router.push(`/pokemon/[id]`, `/pokemon/${record.value}`)
+              }
+              onChange={value => setSearchValue(value)}
+              fuseConfigs={{
+                threshold: 0.05
+              }}
+              value={searchValue}
+            />
+          </SearchBoxWrapper>
+          <PokemonGrid
+            allPokemon={pokemon}
+            lastPokemonElementRef={lastPokemonElementRef}
+          />
+          <p>{error ? 'error' : loading && 'Loading...'}</p>
+        </Wrapper>
+      </Layout>
+    </>
   )
 }
 export default PokedexPage

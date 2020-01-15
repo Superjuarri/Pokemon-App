@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Head from 'next/head'
 import fetch from 'isomorphic-unfetch'
 
 import { PokemonContext } from '../../components/contexts/PokemonContext'
@@ -21,24 +22,34 @@ const PokemonPage = ({
     : []
 
   return (
-    <Layout>
-      {pokemon ? (
-        <PokemonContext.Provider
-          value={{
-            pokemon,
-            pokemonSpecies,
-            pokemonEvolutions,
-            prevPokemon,
-            nextPokemon,
-            colorPalette
-          }}
-        >
-          <PokemonSections />
-        </PokemonContext.Provider>
-      ) : (
-        <NoPokemon />
-      )}
-    </Layout>
+    <>
+      <Head>
+        <title>Pokémon Page</title>
+        <meta
+          name='viewport'
+          content='initial-scale=1.0, width=device-width'
+          key='viewport'
+        />
+      </Head>
+      <Layout>
+        {pokemon ? (
+          <PokemonContext.Provider
+            value={{
+              pokemon,
+              pokemonSpecies,
+              pokemonEvolutions,
+              prevPokemon,
+              nextPokemon,
+              colorPalette
+            }}
+          >
+            <PokemonSections />
+          </PokemonContext.Provider>
+        ) : (
+          <NoPokemon />
+        )}
+      </Layout>
+    </>
   )
 }
 

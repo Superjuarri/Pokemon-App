@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Head from 'next/head'
 import fetch from 'isomorphic-unfetch'
 
 import { MoveContext } from '../../components/contexts/MoveContext'
@@ -7,20 +8,30 @@ import Layout from '../../components/Layout/Layout'
 
 const PokemonPage = ({ move }) => {
   return (
-    <Layout>
-      {move ? (
-        <MoveContext.Provider
-          value={{
-            move
-          }}
-        >
-          <p>{move.name}</p>
-          <p>{move.description}</p>
-        </MoveContext.Provider>
-      ) : (
-        <p>No moves ;-;</p>
-      )}
-    </Layout>
+    <>
+      <Head>
+        <title>Pokdéx</title>
+        <meta
+          name='viewport'
+          content='initial-scale=1.0, width=device-width'
+          key='viewport'
+        />
+      </Head>
+      <Layout>
+        {move ? (
+          <MoveContext.Provider
+            value={{
+              move
+            }}
+          >
+            <p>{move.name}</p>
+            <p>{move.description}</p>
+          </MoveContext.Provider>
+        ) : (
+          <p>No moves ;-;</p>
+        )}
+      </Layout>
+    </>
   )
 }
 

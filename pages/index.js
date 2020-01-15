@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import Head from 'next/head'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
@@ -35,19 +36,29 @@ const IndexPage = () => {
   }, [])
 
   return (
-    <Layout>
-      <Wrapper
-        key='IndexWrapper'
-        initial='exit'
-        animate='enter'
-        exit='exit'
-        variants={pageVarients}
-      >
-        <Header />
-        <PokedexSection />
-        <MovesSection />
-      </Wrapper>
-    </Layout>
+    <>
+      <Head>
+        <title>Home</title>
+        <meta
+          name='viewport'
+          content='initial-scale=1.0, width=device-width'
+          key='viewport'
+        />
+      </Head>
+      <Layout>
+        <Wrapper
+          key='IndexWrapper'
+          initial='exit'
+          animate='enter'
+          exit='exit'
+          variants={pageVarients}
+        >
+          <Header />
+          <PokedexSection />
+          <MovesSection />
+        </Wrapper>
+      </Layout>
+    </>
   )
 }
 export default IndexPage
