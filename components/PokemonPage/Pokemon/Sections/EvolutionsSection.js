@@ -2,8 +2,10 @@ import React, { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-import getTypeColor from '../../lib/getTypeColor'
-import { PokemonContext } from '../contexts/PokemonContext'
+import getTypeColor from '../../../../lib/getTypeColor'
+import convertPokemonId from '../../../../lib/convertPokemonId'
+
+import { PokemonContext } from '../../../contexts/PokemonContext'
 
 const EvolutionWrapper = styled.div`
   background: white;
@@ -38,8 +40,9 @@ const EvolutionTypes = styled.div`
 
 const EvolutionType = styled.p`
   margin: 0;
-  text-transform: capitalize;
   padding: 0.25rem 1.5rem;
+  color: #fff;
+  text-transform: capitalize;
   border-radius: 15px;
   background-color: ${({ type }) => type};
 `
@@ -71,13 +74,13 @@ const Evolution = ({ id, colorPalette }) => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <Link href={`/pokemon/${pokemon.id}`}>
+        <Link href={`/pokemon/[id]`} as={`/pokemon/${pokemon.id}`}>
           <EvolutionWrapper>
             <EvolutionImg
               src={pokemon.sprites.front_default}
               color={colorPalette[0].color}
             />
-            <EvolutionId>#{pokemon.id}</EvolutionId>
+            <EvolutionId>{convertPokemonId(pokemon.id)}</EvolutionId>
             <EvolutionName>{pokemon.name}</EvolutionName>
             <EvolutionTypes>
               {pokemon.types.map((type, index) => (

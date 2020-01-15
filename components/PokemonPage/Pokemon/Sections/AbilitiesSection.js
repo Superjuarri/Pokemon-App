@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import chroma from 'chroma-js'
 
-import { PokemonContext } from '../contexts/PokemonContext'
+import { PokemonContext } from '../../../contexts/PokemonContext'
 
 const Wrapper = styled.section`
   margin: 0 auto;
@@ -13,6 +13,8 @@ const Wrapper = styled.section`
   padding: 25px;
   border-radius: 6px;
   box-shadow: ${({ theme }) => theme.boxShadows.lg};
+
+  /* animation: slide-in-up 0.5s ease-in-out 0s; */
 `
 
 const SectionTitle = styled.h3`

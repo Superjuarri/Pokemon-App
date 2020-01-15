@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import chroma from 'chroma-js'
 
-import { PokemonContext } from '../contexts/PokemonContext'
+import { PokemonContext } from '../../../contexts/PokemonContext'
 
 const Wrapper = styled.section`
   margin: 0 auto;
@@ -37,7 +37,7 @@ const StatName = styled.span`
   text-align: center;
   text-transform: capitalize;
   /* color: white; */
-  background-color: ${({ color }) => chroma(color)};
+  background-color: ${({ color }) => color};
   border-radius: 5px 0 0 5px;
   padding: 10px;
   white-space: nowrap;

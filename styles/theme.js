@@ -13,7 +13,7 @@ export default {
     fontDark: 'hsl(203,54%,10%)'
   },
   font: {
-    fontFamily: 'Lato, Sans Serif'
+    fontFamily: 'Roboto, Sans Serif'
   },
   boxShadows: {
     reg: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',

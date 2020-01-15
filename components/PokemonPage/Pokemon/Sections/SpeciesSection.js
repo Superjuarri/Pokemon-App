@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 
-import { PokemonContext } from '../contexts/PokemonContext'
+import { PokemonContext } from '../../../contexts/PokemonContext'
 
 const Wrapper = styled.section`
   margin: 0 auto;
@@ -60,7 +60,7 @@ const Size = styled.div`
 `
 
 const SpeciesSection = () => {
-  const { pokemon, species } = useContext(PokemonContext)
+  const { pokemon, pokemonSpecies } = useContext(PokemonContext)
 
   const realFeet = (pokemon.height / 10) * 3.2808
   const feet = Math.floor(realFeet)
@@ -74,7 +74,7 @@ const SpeciesSection = () => {
       <SectionTitle>Species</SectionTitle>
       <FlavorText>
         {
-          species.flavor_text_entries.filter(
+          pokemonSpecies.flavor_text_entries.filter(
             entry => entry.language.name === 'en'
           )[0].flavor_text
         }
@@ -82,7 +82,7 @@ const SpeciesSection = () => {
       <FlavorTextVersion>
         Pokedex entry from {''}
         {
-          species.flavor_text_entries.filter(
+          pokemonSpecies.flavor_text_entries.filter(
             entry => entry.language.name === 'en'
           )[0].version.name
         }

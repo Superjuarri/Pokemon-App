@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 
-const fetchAllPokemon = (query, limit) => {
-  const [pokemon, setPokemon] = useState([])
+const fetchPaginatedData = (query, limit) => {
+  const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [nextUrl, setNextUrl] = useState(query + limit)
@@ -11,25 +11,25 @@ const fetchAllPokemon = (query, limit) => {
     const abortController = new AbortController()
     const promiseAbortController = new AbortController()
 
-    const fetchPokemon = async () => {
+    const fetchPaginatedData = async () => {
       setLoading(true)
 
-      const fetchPokemonData = await fetch(nextUrl, {
+      const fetchData = await fetch(nextUrl, {
         signal: abortController.signal
       }).then(res => res.json())
 
-      const pokemonUrls = await fetchPokemonData.results.map(pokemon =>
-        fetch(pokemon.url, {
+      const dataUrls = await fetchData.results.map(entry =>
+        fetch(entry.url, {
           signal: promiseAbortController.signal
         }).then(res => res.json())
       )
 
-      Promise.all(pokemonUrls)
+      Promise.all(dataUrls)
         .then(res => {
-          const currentPokemon = res.map(result => result)
+          const currentData = res.map(result => result)
 
-          setPokemon(prevPokemon => [...prevPokemon, ...currentPokemon])
-          setNextUrl(fetchPokemonData.next)
+          setData(prevData => [...prevData, ...currentData])
+          setNextUrl(fetchData.next != null && fetchData.next)
           setLoading(false)
         })
         .catch(err => {
@@ -37,7 +37,7 @@ const fetchAllPokemon = (query, limit) => {
           setError(err)
         })
     }
-    fetchPokemon()
+    fetchPaginatedData()
 
     return () => {
       abortController.abort()
@@ -46,11 +46,11 @@ const fetchAllPokemon = (query, limit) => {
   }, [query])
 
   return {
-    pokemon,
+    data,
     nextUrl,
     loading,
     error
   }
 }
 
-export default fetchAllPokemon
+export default fetchPaginatedData
