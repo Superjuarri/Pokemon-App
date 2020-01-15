@@ -225,7 +225,7 @@ const Navbar = () => {
       <Content>
         <Link href={`/`}>
           <Logo>
-            <span>Poké</span>Checkup
+            <span>Poké</span>Checkout
           </Logo>
         </Link>
 
