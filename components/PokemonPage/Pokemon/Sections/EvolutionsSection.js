@@ -104,6 +104,11 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+
+  @media screen and (max-width: 600px) {
+    display: grid;
+    gap: 25px;
+  }
 `
 
 const EvolutionsSection = () => {
